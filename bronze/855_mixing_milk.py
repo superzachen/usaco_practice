@@ -4,7 +4,7 @@ cap3, buk3 = map(int, input().split())
 
 TURN_NUM = 100
 
-for i in range(TURN_NUM + 1):
+for i in range(1, TURN_NUM + 1):
     if i%3 == 1:
         amount_changed = min(buk1, cap2-buk2)
         buk1 -= amount_changed
