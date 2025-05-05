@@ -41,7 +41,7 @@ char_counts = [0] * 26
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 
 for _ in range(N):
-    word1, word2 = input().split()
+    word1, word2 = read_strs()
     
     freq1 = [word1.count(alphabet[i]) for i in range(26)]
     freq2 = [word2.count(alphabet[i]) for i in range(26)]

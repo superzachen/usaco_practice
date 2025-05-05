@@ -34,7 +34,7 @@ def read_strs():
 
 
 # -- End of Helpers --  
-board = [input().strip()for _ in range(3)]  
+board = [read_str() for _ in range(3)]  
 
 solo_winners, team_winners = set(), set()  
 
@@ -44,7 +44,7 @@ def check_winner(row, collum, directionr, directionc):
         players.add(board[row + i * directionr][collum + i * directionc])  
     
     if len(players) == 1:  
-        solo_winners.add(next(iter(players)))  
+        solo_winners.add(players.pop())  
     elif len(players) == 2:  
         team_winners.add(tuple(players))  
 
