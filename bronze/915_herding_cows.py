@@ -41,4 +41,4 @@ elif nums[1] == nums[0] + 2 or nums[2] == nums[1] + 2:
     print(1)
 else:
     print(2)
-print(max(nums[1] - nums[0], nums[2] - nums[1]) - 1)
+print(max(nums[1] - nums[0], nums[2] - nums[1]) - 1)# measures the largest gap, and subtractes 1 because we moving inside, so there is 1 less step.

@@ -37,15 +37,15 @@ def read_strs():
 n, k = read_ints()
 diamonds = []
 for _ in range(n):
-    diamonds.append(int(input()))
+    diamonds.append(read_int())
 diamonds.sort()
     
-max_diamonds = 0
+max_count = 0
 for i in range(n):
     count = 0
     for j in range(n):
-        if diamonds[j] >= diamonds[i] and diamonds[j] <= diamonds[i] + k:
+        if diamonds[j] >= diamonds[i] and diamonds[j] <= diamonds[i] + k:# Check if the diamonds can be put in same box
             count += 1
-    max_diamonds = max(max_diamonds, count)
+    max_count = max(0, count)
     
-print(max_diamonds)
+print(max_count)
