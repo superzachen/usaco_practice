@@ -1,8 +1,9 @@
+# https://usaco.org/index.php?page=viewproblem2&cpid=736
 # -- Helpers --
 import sys
 import os
 
-problem_name = "mixmilk"
+problem_name = "cbarn"
 
 input_file = f"{problem_name}.in"
 output_file = f"{problem_name}.out"
@@ -33,27 +34,28 @@ def read_strs():
 
 
 # -- End of Helpers --
-cap1, buk1 = read_ints()
-cap2, buk2 = read_ints()
-cap3, buk3 = read_ints()
+def count_distinguished(spotty, plain, M):
+    distinguished = 0
 
-TURN_NUM = 100
+    for i in range(M):
+        spotty_chars = set(cow[i] for cow in spotty)
+        plain_chars = set(cow[i] for cow in plain)
 
-for i in range(1, TURN_NUM + 1):
-    if i % 3 == 1:
-        amount_changed = min(buk1, cap2 - buk2)
-        buk1 -= amount_changed
-        buk2 += amount_changed
-    if i % 3 == 2:
-        amount_changed = min(buk2, cap3 - buk3)
-        buk2 -= amount_changed
-        buk3 += amount_changed
-    if i % 3 == 0:
-        amount_changed = min(buk3, cap1 - buk1)
-        buk3 -= amount_changed
-        buk1 += amount_changed
+        if spotty_chars.isdisjoint(plain_chars):
+            distinguished += 1
+
+    return distinguished
+
+N, length = read_ints()
+
+spotted = []
+plain = []
 
 
-print(buk1)
-print(buk2)
-print(buk3)
+for _ in range(N):
+    spotted.append(read_str())
+for _ in range(N):
+    plain.append(read_str())
+
+print(count_distinguished(spotted, plain, length))
+
