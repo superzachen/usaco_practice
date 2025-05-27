@@ -34,40 +34,22 @@ def read_strs():
 
 
 # -- End of Helpers --
+def area(x1, y1, x2, y2):
+    return max(0, (x2 - x1)) * max(0, (y2 - y1))
+
+def overlap(x1, y1, x2, y2, x3, y3, x4, y4):
+    return area(max(x1, x3), max(y1, y3), min(x2, x4), min(y2, y4))
+
 x1, y1, x2, y2 = read_ints()
 x3, y3, x4, y4 = read_ints()
 x5, y5, x6, y6 = read_ints()
 
-span = (max(x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6) + 1) * 2
+area1 = area(x1, y1, x2, y2)
+area2 = area(x3, y3, x4, y4)
 
+covered1 = overlap(x1, y1, x2, y2, x5, y5, x6, y6)
+covered2 = overlap(x3, y3, x4, y4, x5, y5, x6, y6)
 
-visible = [[False for _ in range(span)] for _ in range(span)]
-x1 += span // 2
-y1 += span // 2
-x2 += span // 2
-y2 += span // 2
-x3 += span // 2
-y3 += span // 2
-x4 += span // 2
-y4 += span // 2
-x5 += span // 2
-y5 += span // 2
-x6 += span // 2
-y6 += span // 2
-for x in range(x1, x2):
-	for y in range(y1, y2):
-		visible[x][y] = True
-for x in range(x3, x4):
-	for y in range(y3, y4):
-		visible[x][y] = True
-for x in range(x5, x6):
-	for y in range(y5, y6):
-		visible[x][y] = False
+visible_area = (area1 - covered1) + (area2 - covered2)
 
-
-
-answer = 0
-for x in range(span):
-	for y in range(span):
-		answer += visible[x][y]
-print(answer)
+print(visible_area)

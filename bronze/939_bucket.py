@@ -46,18 +46,18 @@ for i in range(10):
         if row[j] == "L":
             lake_x = i
             lake_y = j
-	# distance without accounting for the rock
+    # distance without accounting for the rock
 cow_count = abs(barn_x - lake_x) + abs(barn_y - lake_y) - 1# This is because the cow doesn't start on the barn
 
 # Row Check
 if barn_x == rock_x == lake_x and (
-	lake_y < rock_y < barn_y or barn_y < rock_y < lake_y
+    lake_y < rock_y < barn_y or barn_y < rock_y < lake_y
 ):
-	cow_count += 2
+    cow_count += 2
 
 # column check
 elif barn_y == rock_y == lake_y and (
-	lake_x < rock_x < barn_x or barn_x < rock_x < lake_x
+    lake_x < rock_x < barn_x or barn_x < rock_x < lake_x
 ):
-	cow_count += 2
+    cow_count += 2
 print(cow_count)

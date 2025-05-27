@@ -1,9 +1,9 @@
-# https://usaco.org/index.php?page=viewproblem2&cpid=616
+# https://usaco.org/index.php?page=viewproblem2&cpid=739
 # -- Helpers --
 import sys
 import os
 
-problem_name = "cbarn"
+problem_name = "cownomics"
 
 input_file = f"{problem_name}.in"
 output_file = f"{problem_name}.out"
@@ -34,17 +34,26 @@ def read_strs():
 
 
 # -- End of Helpers --
-room_count = read_int()
-rooms = [read_int() for _ in range(room_count)]
+import itertools
 
-total_cows = sum(rooms)
-
-min_dist = float("inf")
-for i in range(room_count):
-    dist = 0
-    cows_left = total_cows
-    for r in range(room_count):
-        cows_left -= rooms[(i + r) % room_count]
-        dist += cows_left
-    min_dist = min(min_dist, dist)
-print(min_dist)
+N, M = read_ints()
+answer = 0
+dnas = []
+for _ in range(N * 2):
+    dnas.append(read_str())
+    
+s = set()
+for pos in itertools.combinations(range(M), 3):
+    s.clear()
+    good = True
+    for i in range(N):
+        dna = dnas[i]
+        s.add((dna[pos[0]], dna[pos[1]], dna[pos[2]]))
+    for i in range(N):
+        dna = dnas[i + N]
+        if (dna[pos[0]], dna[pos[1]], dna[pos[2]]) in s:
+            good = False
+            break
+    if good:
+        answer += 1
+print(answer)
