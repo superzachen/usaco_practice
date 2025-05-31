@@ -61,14 +61,18 @@ for v in x_fences:
         bottom_left = 0
         bottom_right = 0
         for c in range(N):
-            if x_value[c] < v and y_value[c] > h:
-                top_left += 1
-            elif x_value[c] > v and y_value[c] > h:
-                top_right += 1
-            if x_value[c] < v and y_value[c] < h:
-                bottom_left += 1
-            elif x_value[c] > v and y_value[c] < h:
-                bottom_right += 1
+            is_left = x_value[c] < v
+            is_bottom = y_value[c] < h
+            if is_left:
+                if is_bottom:
+                    bottom_left += 1
+                else:
+                    top_left += 1
+            else:
+                if is_bottom:
+                    bottom_right += 1
+                else:
+                    top_right += 1
         M = min(M, max(top_left, top_right, bottom_left, bottom_right))
 
 print(M)

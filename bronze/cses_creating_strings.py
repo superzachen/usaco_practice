@@ -1,4 +1,4 @@
-# https://cses.fi/problemset/task/1623/
+# https://cses.fi/problemset/task/1622
 # -- Helpers --
 import sys
 import os
@@ -34,20 +34,10 @@ def read_strs():
 
 
 # -- End of Helpers --
-n = read_int()
-weights = read_ints()
-def find_min_diff(i, sum1, sum2):
-    if i == n:
-        return abs(sum2 - sum1)
-            
-    diff1 = find_min_diff(i + 1, sum1 + weights[i], sum2)
-    diff2 = find_min_diff(i + 1, sum1, sum2 + weights[i])
-        
-    return min(diff1, diff2)
-    
+import itertools
 
-if n == 0:
-    print(0)
-else:
-    result = find_min_diff(0, 0, 0)
-    print(result)
+s = read_str()
+perms = set(itertools.permutations(s))
+print(len(perms))
+for perm in sorted(perms):
+    print(''.join(perm))
