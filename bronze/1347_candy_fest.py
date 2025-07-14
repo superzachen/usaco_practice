@@ -1,4 +1,4 @@
-#https://usaco.org/index.php?page=viewproblem2&cpid=1347
+# https://usaco.org/index.php?page=viewproblem2&cpid=1347
 # -- Helpers --
 import sys
 import os
@@ -25,7 +25,7 @@ def read_str():
 
 def read_ints():
     """Reads multiple integers from a line, separated by space."""
-    line =  sys.stdin.readline().split()
+    line = sys.stdin.readline().split()
     return list(map(int, line))
 
 
@@ -39,21 +39,21 @@ N, M = read_ints()
 cows = read_ints()
 candy_canes = read_ints()
 
-def eat(cow_list, candy_cane):
-    return_list = cow_list.copy()
+
+def eat(candy_cane):
     cur_candy_height = 0
-    for i in range(len(cow_list)):
-        if cow_list[i] > cur_candy_height:
-            if cow_list[i] >= candy_cane:
-                return_list[i] = (cow_list[i] + candy_cane-cur_candy_height)
-                return return_list
-            else:
-                return_list[i] = (cow_list[i] + cow_list[i]-cur_candy_height)
-            cur_candy_height = cow_list[i]
-    return return_list
+    for i in range(N):
+        if cows[i] > cur_candy_height:
+            change = min(candy_cane, cows[i]) - cur_candy_height
+            cows[i] += change
+            cur_candy_height += change
+            if cur_candy_height == candy_cane:
+                break
+
 
 for candy in candy_canes:
-    cows = eat(cows, candy)
+    eat(candy)
+    #print(cows, candy)
 
 for cow in cows:
     print(cow)
