@@ -83,7 +83,7 @@ def search(idx, R, C):
     # # optimization, avoid dead ends
     if visited[R - 1][C - 1] and visited[R - 1][C + 1] and visited[R - 1][C] == 0:
         dirsToGo = [0]
-        deadend_opt += 1
+        deadend_opt += 1 
     elif visited[R + 1][C + 1] and visited[R - 1][C + 1] and visited[R][C + 1] == 0:
         dirsToGo = [3]
         deadend_opt += 1
